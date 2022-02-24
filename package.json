@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^5.1.0"
+  },
+  "name": "demo6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "prettier ":"lint-staged",
+    "start": "nodemon --inspect ./src/index.js ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "pre-commit": "lint-staged"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  }
+}
