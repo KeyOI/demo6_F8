@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "express": "^4.17.3",
-    "express-handlebars": "^5.1.0"
+    "express-handlebars": "^5.1.0",
+    "mongoose": "^6.2.3"
   },
   "name": "demo6",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "prettier ":"lint-staged",
+    "prettier ": "lint-staged",
     "start": "nodemon --inspect ./src/index.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/"

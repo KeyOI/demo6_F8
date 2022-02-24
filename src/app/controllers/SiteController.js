@@ -1,4 +1,8 @@
+
+const Course = require('../models/Course')
+
 class NewsController {
+    
     //[GET] /contact
     contact(req, res) {
         res.render('contact');
@@ -11,7 +15,17 @@ class NewsController {
 
     // [GET] /
     home(req, res) {
-        res.render('home');
+         
+        Course.find({},function(err, courses){ 
+            if(!err){
+                res.json(courses)
+            }else{
+                res.status(400).json({errors:"error"})  
+            }
+        })
+ 
+
+        // res.render('home');
     }
 }
 
