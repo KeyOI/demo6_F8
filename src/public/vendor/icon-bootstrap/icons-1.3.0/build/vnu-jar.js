@@ -7,45 +7,46 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-'use strict'
+'use strict';
 
-const childProcess = require('child_process')
-const vnu = require('vnu-jar')
+const childProcess = require('child_process');
+const vnu = require('vnu-jar');
 
 childProcess.exec('java -version', (error, stdout, stderr) => {
-  if (error) {
-    console.error('Skipping vnu-jar test; Java is missing.')
-    return
-  }
+    if (error) {
+        console.error('Skipping vnu-jar test; Java is missing.');
+        return;
+    }
 
-  const is32bitJava = !/64-Bit/.test(stderr)
+    const is32bitJava = !/64-Bit/.test(stderr);
 
-  // vnu-jar accepts multiple ignores joined with a `|`.
-  // Also note that the ignores are regular expressions.
-  const ignores = [
-    // IE11 doesn't recognize <main> / give the element an implicit "main" landmark.
-    // Explicit role="main" is redundant for other modern browsers, but still valid.
-    'The “main” role is unnecessary for element “main”.'
-  ].join('|')
+    // vnu-jar accepts multiple ignores joined with a `|`.
+    // Also note that the ignores are regular expressions.
+    const ignores = [
+        // IE11 doesn't recognize <main> / give the element an implicit "main" landmark.
+        // Explicit role="main" is redundant for other modern browsers, but still valid.
+        'The “main” role is unnecessary for element “main”.',
+    ].join('|');
 
-  const args = [
-    '-jar',
-    vnu,
-    '--asciiquotes',
-    '--skip-non-html',
-    '--Werror',
-    `--filterpattern "${ignores}"`,
-    '_site/'
-  ]
+    const args = [
+        '-jar',
+        vnu,
+        '--asciiquotes',
+        '--skip-non-html',
+        '--Werror',
+        `--filterpattern "${ignores}"`,
+        '_site/',
+    ];
 
-  // For the 32-bit Java we need to pass `-Xss512k`
-  if (is32bitJava) {
-    args.splice(0, 0, '-Xss512k')
-  }
+    // For the 32-bit Java we need to pass `-Xss512k`
+    if (is32bitJava) {
+        args.splice(0, 0, '-Xss512k');
+    }
 
-  return childProcess.spawn('java', args, {
-    shell: true,
-    stdio: 'inherit'
-  })
-    .on('exit', process.exit)
-})
+    return childProcess
+        .spawn('java', args, {
+            shell: true,
+            stdio: 'inherit',
+        })
+        .on('exit', process.exit);
+});

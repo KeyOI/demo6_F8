@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "beautiful": "pettier --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,scss}'",
+    "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,scss}'",
     "start": "nodemon --inspect ./src/index.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/"
